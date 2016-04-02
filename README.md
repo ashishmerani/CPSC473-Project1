@@ -1,4 +1,4 @@
-initial commit
+
 # CPSC473-Project1
 
 CS473 Project 1 - Documentation for Post it Up! Web Application
