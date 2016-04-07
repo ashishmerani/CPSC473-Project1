@@ -1,3 +1,5 @@
+/* jshint node: true */
+
 // express-stormpath used for authentication of the users.
 "use strict";
 var express = require("express");
@@ -77,7 +79,6 @@ app.post("/addpost", function (req, res) {
     var link = req.body.link;
     var length;
     var data;
-    var content;
     data = {
         "id": length + 1,
         "title": title,
@@ -104,7 +105,6 @@ app.post("/incr", function (req, res) {
     var useremail = req.body.useremail;
     var content;
     var isVote = false;
-    var ifExists = false;
     var responsemsg;
     var content_users;
     var data;
@@ -150,7 +150,6 @@ app.post("/decr", function (req, res) {
     var useremail = req.body.useremail;
     var content;
     var isVote = false;
-    var ifExists = false;
     var responsemsg;
     var content_users;
     var data;
