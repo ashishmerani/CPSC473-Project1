@@ -19,12 +19,12 @@
 
 ### II. JSON database structure:
 
-* “questions” an array of posts by users containing the following attributes:
-  1. “id” : an id that acts as a key to differentiate a particular post from all the other posts in the database
-  2. “title”: a short description of the link users are sharing
-  3. “link”: the actual website link that users post to the wall
-  4. “vote”: a counter that keeps track of the number of current votes
-  5. “users”: an array of user emails to keep track of which user voted on this post in order to prevent the same user from voting multiple times
+1. “questions” an array of posts by users containing the following attributes:
+  * “id” : an id that acts as a key to differentiate a particular post from all the other posts in the database
+  * “title”: a short description of the link users are sharing
+  * “link”: the actual website link that users post to the wall
+  * “vote”: a counter that keeps track of the number of current votes
+  * “users”: an array of user emails to keep track of which user voted on this post in order to prevent the same user from voting multiple times
 
 
 ### III. Installation and setup:
