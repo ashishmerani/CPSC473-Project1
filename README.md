@@ -60,50 +60,50 @@ Required third party tools/libraries/modules:
 
 2. Start json-server with the path to the database file, db.json.
 
-> e.g.     json-server db/db.json
+> json-server db/db.json
 
-Once it is up and running, an output message displaying the resources and the home page to the     database will be displayed in the terminal. By default the database can be accessed at [http://localhost:3000/]
+3. Once it is up and running, an output message displaying the resources and the home page to the     database will be displayed in the terminal. By default the database can be accessed at [http://localhost:3000/]
 
-3. Open a separate terminal window and again cd into directory containing source code
+4. Open a separate terminal window and again cd into directory containing source code
 
-4. Run the server script using node.js
+5. Run the server script using node.js
 
-> e.g.     node server.js
+> node server.js
 
-Once the server is up and successfully connects with stormpath API, it will display “Stormpath Ready” in the terminal.
+6. Once the server is up and successfully connects with stormpath API, it will display “Stormpath Ready” in the terminal.
 
-5. Launch a web browser go to http://localhost:5000 to visit the home page
+7. Launch a web browser go to http://localhost:5000 to visit the home page
 
 ## V. The server-side code
 
 Route descriptions:
-GET /checklogin - checks to make sure user is currently logged in
+* GET /checklogin - checks to make sure user is currently logged in
 
-GET /readpost - accesses the database and returns a JSON object that has its elements sorted by time posted (descending order)
+* GET /readpost - accesses the database and returns a JSON object that has its elements sorted by time posted (descending order)
 
-GET /readpopoularpost - accesses the database and returns a JSON object that has its elements sorted by number of votes (descending order)
+* GET /readpopoularpost - accesses the database and returns a JSON object that has its elements sorted by number of votes (descending order)
 
-POST /addpost - receives a post request from the client and appends it to the database. Does NOT check to see if the same link has been posted previously. Therefore the web app allows for multiple postings of the same link.
+* POST /addpost - receives a post request from the client and appends it to the database. Does NOT check to see if the same link has been posted previously. Therefore the web app allows for multiple postings of the same link.
 
-POST /incr - retrieves email of the user along with the ID of the post the user is voting on. Using the email it checks to see if the user has voted on this particular ID link in the past. If they have not, it increments the vote count of that particular link in the database, otherwise it returns a response message ‘201’ meaning they have already voted.
+* POST /incr - retrieves email of the user along with the ID of the post the user is voting on. Using the email it checks to see if the user has voted on this particular ID link in the past. If they have not, it increments the vote count of that particular link in the database, otherwise it returns a response message ‘201’ meaning they have already voted.
 
-POST /decr - retrieves email of the user along with the ID of post the user is voting on. Using the email it checks to see if the user has voted on this particular ID link in the past. If they have not, it decrements the vote count of that particular link in the database, otherwise it returns a response message ‘201’ meaning they have already voted.
+* POST /decr - retrieves email of the user along with the ID of post the user is voting on. Using the email it checks to see if the user has voted on this particular ID link in the past. If they have not, it decrements the vote count of that particular link in the database, otherwise it returns a response message ‘201’ meaning they have already voted.
 
 
-VI. The client-side code
+## VI. The client-side code
 
 Function descriptions:
-main( ) - sends a GET request to /checklogin. Adjusts the navigation bar accordingly depending on whether or not the user is logged in. After which it calls the functions showlatestposts( ) and showpopularposts( )
+* main( ) - sends a GET request to /checklogin. Adjusts the navigation bar accordingly depending on whether or not the user is logged in. After which it calls the functions showlatestposts( ) and showpopularposts( )
 
-showlatestposts( ) - sends a GET request to /readpost and retrieves a JSON object that has its elements sorted by time posted (descending order). Uses a for loop to parse through the data and appends the ID, vote count, title, and link along with corresponding HTML code to the HTML class ‘tm_displayposts’.
+* showlatestposts( ) - sends a GET request to /readpost and retrieves a JSON object that has its elements sorted by time posted (descending order). Uses a for loop to parse through the data and appends the ID, vote count, title, and link along with corresponding HTML code to the HTML class ‘tm_displayposts’.
 
-showpopularposts( ) - sends a GET request to /readpopularpost and retrieves a JSON object that has its elements sorted by number of votes (descending order). Uses a for loop to parse through the data and appends the ID, vote count, title, and link along with corresponding HTML code to the HTML class ‘tm_displaypopularposts’.
+* showpopularposts( ) - sends a GET request to /readpopularpost and retrieves a JSON object that has its elements sorted by number of votes (descending order). Uses a for loop to parse through the data and appends the ID, vote count, title, and link along with corresponding HTML code to the HTML class ‘tm_displaypopularposts’.
 
-$(“#tm_post”).on(‘click’, callback function( ) ) - checks to make sure the user is logged in. If so, the function then pulls the post title and link from input fields on the home page. It then checks that the user enters both a title and a link before it sends them as a post to /addpost.
+* $(“#tm_post”).on(‘click’, callback function( ) ) - checks to make sure the user is logged in. If so, the function then pulls the post title and link from input fields on the home page. It then checks that the user enters both a title and a link before it sends them as a post to /addpost.
 
-$(“#tm_logoutlink”).on(‘click’, callback function( ) ) - logs the user out
+* $(“#tm_logoutlink”).on(‘click’, callback function( ) ) - logs the user out
 
-$(“.tm_displayposts”).delegate(‘#tm_voteup’, ‘click’, callback function( ) ) - the function parses the DOM tree to pull the ID of the post the user is voting on. A check is done to make sure the user is logged in, and if so it sends the ID and the user’s email as a post to /incr in order to increment the vote count. The callback function will alert the user know if they have already voted.
+* $(“.tm_displayposts”).delegate(‘#tm_voteup’, ‘click’, callback function( ) ) - the function parses the DOM tree to pull the ID of the post the user is voting on. A check is done to make sure the user is logged in, and if so it sends the ID and the user’s email as a post to /incr in order to increment the vote count. The callback function will alert the user know if they have already voted.
 
-$(“.tm_displayposts”).delegate(‘#tm_votedown’, ‘click’, callback function( ) ) - the function parses the DOM tree to pull the ID of the post the user is voting on. A check is done to make sure the u
+* $(“.tm_displayposts”).delegate(‘#tm_votedown’, ‘click’, callback function( ) ) - the function parses the DOM tree to pull the ID of the post the user is voting on. A check is done to make sure the u
 
