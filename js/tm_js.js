@@ -70,6 +70,7 @@ $("#tm_post").on("click", function() {
                     $("#tm_title").val("");
                     $("#tm_link").val("");
                     $(".tm_displayposts").empty();
+                    $(".tm_displaypopularposts").empty();
                     showlatestposts();
                     showpopularposts();
                 });
@@ -77,7 +78,7 @@ $("#tm_post").on("click", function() {
         }
     });
 });
-// on click event post data to /logout 
+// on click event post data to /logout
 $("#tm_logoutlink").on("click", function() {
     $.post("/logout", function(data) {
         console.log(data);
@@ -105,7 +106,9 @@ $(".tm_displayposts").delegate("#tm_voteup", "click", function() {
                     alert("User does not exist.");
                 } else if (data === "200") {
                     $(".tm_displayposts").empty();
+                    $(".tm_displaypopularposts").empty();
                     showlatestposts();
+                    showpopularposts();
                 } else if (data === "201") {
                     $("#tm_alert_voted").modal("show");
                 }
@@ -132,7 +135,9 @@ $(".tm_displayposts").delegate("#tm_votedown", "click", function() {
                     alert("User does not exist.");
                 } else if (data === "200") {
                     $(".tm_displayposts").empty();
+                    $(".tm_displaypopularposts").empty();
                     showlatestposts();
+                    showpopularposts();
                 } else if (data === "201") {
                     $("#tm_alert_voted").modal("show");
                 }
