@@ -132,7 +132,7 @@ app.post("/incr", function (req, res) {
                     method: "PATCH",
                     json: data
                 }, function (err, httpResponse, body) {
-                    console.log("successful");
+                    console.log("successful increment");
                     responsemsg = "200";
                     res.end(responsemsg);
                 });
@@ -177,7 +177,7 @@ app.post("/decr", function (req, res) {
                     method: "PATCH",
                     json: data
                 }, function (err, httpResponse, body) {
-                    console.log("successful");
+                    console.log("successful decrement");
                     responsemsg = "200";
                     res.end(responsemsg);
                 });
