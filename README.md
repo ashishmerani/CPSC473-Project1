@@ -105,5 +105,6 @@ Function descriptions:
 
 * $(“.tm_displayposts”).delegate(‘#tm_voteup’, ‘click’, callback function( ) ) - the function parses the DOM tree to pull the ID of the post the user is voting on. A check is done to make sure the user is logged in, and if so it sends the ID and the user’s email as a post to /incr in order to increment the vote count. The callback function will alert the user know if they have already voted.
 
-* $(“.tm_displayposts”).delegate(‘#tm_votedown’, ‘click’, callback function( ) ) - the function parses the DOM tree to pull the ID of the post the user is voting on. A check is done to make sure the u
+* $(“.tm_displayposts”).delegate(‘#tm_votedown’, ‘click’, callback function( ) ) - the function parses the DOM tree to pull the ID of the post the user is voting on. A check is done to make sure the user is logged in, and if so it sends the ID and the user’s email as a post to /dec in order to decrement the vote count. The callback function will alert the user know if they have already voted.
+
 
