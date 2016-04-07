@@ -1,20 +1,26 @@
+// Client-side code
+/* jshint browser: true, jquery: true, curly: true, eqeqeq: true, forin: true, immed: true, indent: 4, latedef: true, newcap: true, nonew: true, quotmark: double, undef: true, unused: true, strict: true, trailing: true */
+// Server-side code
+/* jshint node: true, curly: true, eqeqeq: true, forin: true, immed: true, indent: 4, latedef: true, newcap: true, nonew: true, quotmark: double, undef: true, unused: true, strict: true, trailing: true */
 /*globals $:false */
+"use strict";
 // main function
 function main() {
     $.get("/checklogin", function(data) {
         console.log(data);
-        if (data === 'Not logged in') {
-            $('#tm_logoutlink').hide();
-            $('#tm_useremail').hide();
+        if (data === "Not logged in") {
+            $("#tm_logoutlink").hide();
+            $("#tm_useremail").hide();
         } else {
-            $('#tm_loginlink').hide();
-            $('#tm_signuplink').hide();
-            $('#tm_useremail').text(data);
+            $("#tm_loginlink").hide();
+            $("#tm_signuplink").hide();
+            $("#tm_useremail").text(data);
         }
     });
     showlatestposts();
     showpopularposts();
 }
+
 
 // function for showing latest post to the user.
 function showlatestposts() {
@@ -38,28 +44,29 @@ function showpopularposts() {
     });
 }
 
-$("#tm_post").on('click', function() {
+$("#tm_post").on("click", function() {
     $.get("/checklogin", function(data) {
         console.log(data);
-        if (data === 'Not logged in') {
+        if (data === "Not logged in") {
             $("#tm_alert").modal("show");
-            $("#tm_showalertcontent").html('<strong>Kindly <a id="tm_loginlink" class="btn" href="/login">Login</a> to continue !!!</strong> <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>');
+            $("#tm_showalertcontent").html("<strong>Kindly <a id='tm_loginlink' class='btn' href='/login'>Login</a> to continue !!!</strong> <button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button>");
         } else {
             $("#tm_loginalert").hide();
             var title;
             var link;
             title = $("#tm_title").val();
             link = $("#tm_link").val();
-            if (title === '' || link === '') {
+            if (title === "" || link === "") {
                 $("#tm_loginalert").show();
-                document.getElementById('tm_title').style.borderColor = "red";
-                document.getElementById('tm_link').style.borderColor = "red";
-                $("#tm_showalertcontent").html('<strong>Please enter a valid input.</strong> <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button> ');
+                document.getElementById("tm_title").style.borderColor = "red";
+                document.getElementById("tm_link").style.borderColor = "red";
+                $("#tm_showalertcontent").html("<strong>Please enter a valid input.</strong> <button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button> ");
             } else {
                 $.post("/addpost", {
                     title: title,
                     link: link
                 }, function(data) {
+                    console.log(data);
                     $("#tm_title").val("");
                     $("#tm_link").val("");
                     $(".tm_displayposts").empty();
@@ -71,34 +78,35 @@ $("#tm_post").on('click', function() {
     });
 });
 // on click event post data to /logout 
-$("#tm_logoutlink").on('click', function() {
+$("#tm_logoutlink").on("click", function() {
     $.post("/logout", function(data) {
+        console.log(data);
         location.reload();
     });
 });
 
 // display post on vote up
-$(".tm_displayposts").delegate('#tm_voteup', 'click', function() {
-    var qid = parseInt($(this).parent().siblings('.votecount').children("#tm_qid").text()); //question id
-    var useremail = $('#tm_useremail').text(); //useremail
+$(".tm_displayposts").delegate("#tm_voteup", "click", function() {
+    var qid = parseInt($(this).parent().siblings(".votecount").children("#tm_qid").text()); //question id
+    var useremail = $("#tm_useremail").text(); //useremail
 
-    var votes = parseInt($(this).parent().siblings('.votecount').children("#tm_votes").text());
+    var votes = parseInt($(this).parent().siblings(".votecount").children("#tm_votes").text());
     console.log(votes);
     $.get("/checklogin", function(data) {
 
-        if (data === 'Not logged in') {
+        if (data === "Not logged in") {
             $("#tm_alert").modal("show");
         } else {
             $.post("/incr", {
                 id: qid,
                 useremail: useremail
             }, function(data) {
-                if (data == '404') {
+                if (data === "404") {
                     alert("User does not exist.");
-                } else if (data == '200') {
+                } else if (data === "200") {
                     $(".tm_displayposts").empty();
                     showlatestposts();
-                } else if (data == '201') {
+                } else if (data === "201") {
                     $("#tm_alert_voted").modal("show");
                 }
             });
@@ -107,25 +115,25 @@ $(".tm_displayposts").delegate('#tm_voteup', 'click', function() {
 });
 
 // display post on vote down
-$(".tm_displayposts").delegate('#tm_votedown', 'click', function() {
-    var qid = parseInt($(this).parent().siblings('.votecount').children("#tm_qid").text()); //question id
-    var useremail = $('#tm_useremail').text(); //useremail
-    var votes = parseInt($(this).parent().siblings('.votecount').children("#tm_votes").text());
+$(".tm_displayposts").delegate("#tm_votedown", "click", function() {
+    var qid = parseInt($(this).parent().siblings(".votecount").children("#tm_qid").text()); //question id
+    var useremail = $("#tm_useremail").text(); //useremail
+    var votes = parseInt($(this).parent().siblings(".votecount").children("#tm_votes").text());
     console.log(votes);
     $.get("/checklogin", function(data) {
-        if (data === 'Not logged in') {
+        if (data === "Not logged in") {
             $("#tm_alert").modal("show");
         } else {
             $.post("/decr", {
                 id: qid,
                 useremail: useremail
             }, function(data) {
-                if (data == '404') {
+                if (data === "404") {
                     alert("User does not exist.");
-                } else if (data == '200') {
+                } else if (data === "200") {
                     $(".tm_displayposts").empty();
                     showlatestposts();
-                } else if (data == '201') {
+                } else if (data === "201") {
                     $("#tm_alert_voted").modal("show");
                 }
             });
