@@ -67,4 +67,4 @@ $(“#tm_post”).on(‘click’, callback function() )
 $(“.tm_displayposts”).delegate(‘#tm_voteup’, ‘click’, callback function() )
 $(“.tm_displayposts”).delegate(‘#tm_votedown’, ‘click’, callback function() )
 
-
+Bootstrap Theme credit-> http://startbootstrap.com/template-overviews/agency/
