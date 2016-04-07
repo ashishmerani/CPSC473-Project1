@@ -1,9 +1,9 @@
 # CS473 Project 1 - Documentation for Post it Up! Web Application
 # Section 1, Team 4 - Thermodynamic Mistranslation
 
-## Purpose: Build a social news voting site like Reddit or Hacker News
+### Purpose: Build a social news voting site like Reddit or Hacker News
 
-## I. Current functionality and non-functionality:
+### I. Current functionality and non-functionality:
 
 * Users can create accounts, login, and logout from client-side via Stormpath API
 * The server can properly create and authenticate user credentials using Stormpath API
@@ -17,9 +17,9 @@
 * Clicking on user profile (when logged in), social media buttons, privacy policy, and terms of use links do not carry out an action as intended
 
 
-## II. JSON database structure:
+### II. JSON database structure:
 
-“questions” an array of posts by users containing the following attributes:
+* “questions” an array of posts by users containing the following attributes:
 1. “id” : an id that acts as a key to differentiate a particular post from all the other posts in the database
 2. “title”: a short description of the link users are sharing
 3. “link”: the actual website link that users post to the wall
@@ -27,7 +27,7 @@
 5. “users”: an array of user emails to keep track of which user voted on this post in order to prevent the same user from voting multiple times
 
 
-## III. Installation and setup:
+### III. Installation and setup:
 
 Required third party tools/libraries/modules:
 * Node.js - [https://nodejs.org/api/]
@@ -54,7 +54,7 @@ Required third party tools/libraries/modules:
 > npm install request
 
 
-## IV. Steps to execute web app:
+### IV. Steps to execute web app:
 
 1. Open a terminal window and cd in the home directory for the source code
 
@@ -74,7 +74,7 @@ Required third party tools/libraries/modules:
 
 7. Launch a web browser go to http://localhost:5000 to visit the home page
 
-## V. The server-side code
+### V. The server-side code
 
 Route descriptions:
 * GET /checklogin - checks to make sure user is currently logged in
@@ -90,7 +90,7 @@ Route descriptions:
 * POST /decr - retrieves email of the user along with the ID of post the user is voting on. Using the email it checks to see if the user has voted on this particular ID link in the past. If they have not, it decrements the vote count of that particular link in the database, otherwise it returns a response message ‘201’ meaning they have already voted.
 
 
-## VI. The client-side code
+### VI. The client-side code
 
 Function descriptions:
 * main( ) - sends a GET request to /checklogin. Adjusts the navigation bar accordingly depending on whether or not the user is logged in. After which it calls the functions showlatestposts( ) and showpopularposts( )
