@@ -1,7 +1,7 @@
 
 # CPSC473-Project1
 
-CS473 Project 1 - Documentation for Post it Up! Web Application
+CPSC473 Project 1 - Documentation for Post it Up! Web Application
 Section 1, Team 4 - Thermodynamic Mistranslation
 
 Purpose: Build a social news voting site like Reddit or Hacker News
